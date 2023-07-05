@@ -16,7 +16,7 @@ func Changelog() {
 	fmt.Print(`
 VERSION		DATE			COMMENT
 -------		----			-------
-0.100		2023.06.25		stub
+0.100		2023.07.05		stub
 `)
 }
 

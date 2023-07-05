@@ -9,14 +9,14 @@ import (
 	"push2registry/helpers"
 )
 
-var version = "0.100-0 (2023.06.25)"
+var version = "0.100-0 (2023.07.05)"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:     "p2r",
 	Short:   "Push a binary package to specified NxRM repo",
 	Version: version,
-	Long:    `This tools allows you to push your binary package to your own NxRM repo.`,
+	Long:    `This tools allows you to push your docker image (tarball format) to your own NxRM docker registry.`,
 }
 
 var clCmd = &cobra.Command{

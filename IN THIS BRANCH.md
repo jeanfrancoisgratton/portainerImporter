@@ -2,3 +2,5 @@
 ___
 <H2>What will be in this branch</H2>
 
+- Initial version of software, with config management
+
