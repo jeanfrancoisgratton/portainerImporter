@@ -15,9 +15,11 @@ import (
 var PortainerHostConfigFile = "c.json"
 
 type PortainerHostConfigStruct struct {
-	Token         string `json:"Token, omitempty"`
+	Token         string `json:"Token,omitempty"`
 	Environment   string `json:"Environment"`
 	PortainerHost string `json:"PortainerHost"`
+	Username      string `json:"Username,omitempty"`
+	Password      string `json:"Password,omitempty"`
 }
 
 func (p PortainerHostConfigStruct) ConfigFile2Json() (PortainerHostConfigStruct, error) {

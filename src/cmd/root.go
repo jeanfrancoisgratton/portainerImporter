@@ -6,6 +6,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"os"
+	"push2registry/config"
 	"push2registry/helpers"
 )
 
@@ -37,4 +38,6 @@ func Execute() {
 
 func init() {
 	rootCmd.AddCommand(clCmd)
+
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "environment", "e", "push2registry.json", "Environment file.")
 }

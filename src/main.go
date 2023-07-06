@@ -20,7 +20,8 @@ func main() {
 	// Second, we create a configuration file if none exists
 	_, err := os.Stat(filepath.Join(os.Getenv("HOME"), ".config", "push2registry", "push2registry.json"))
 	if err != nil {
-		config.TemplateConfigCreate("")
+		//config.TemplateConfigCreate("")
+		config.ConfigCreate("", true)
 	}
 
 	cmd.Execute()
