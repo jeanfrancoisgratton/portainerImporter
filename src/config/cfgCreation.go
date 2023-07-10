@@ -10,41 +10,48 @@ import (
 	"fmt"
 	"os"
 	"push2registry/helpers"
+	"strings"
 )
 
-// Simple function, we create a config file
-func ConfigCreate(configfile string, isTemplate bool) error {
+// Simple function, we create a templated config file
+func TemplatedConfigCreate() error {
 	var portainerhostconfig = PortainerHostConfigStruct{Token: "", Environment: "local", PortainerHost: "https://localhost:19943"}
-	if configfile == "" {
-		configfile = PortainerHostConfigFile
-	}
-
-	if !isTemplate {
-		portainerhostconfig = queryConfigValues()
-	}
-	return portainerhostconfig.Json2ConfigFile(configfile)
+	return portainerhostconfig.Json2ConfigFile(PortainerHostConfigFile)
 }
 
 func queryConfigValues() PortainerHostConfigStruct {
 	var env PortainerHostConfigStruct
 	inputScanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Print("Please enter the auth token (ENTER to leave empty): ")
+	fmt.Print("Please enter the auth token (ENTER to skip): ")
 	inputScanner.Scan()
 	env.Token = inputScanner.Text()
 
 	fmt.Printf("Please enter the selected environment (ENTER to select 'local'): ")
 	inputScanner.Scan()
 	env.Environment = inputScanner.Text()
+	if env.Environment == "" {
+		env.Environment = "local"
+	}
 
 	fmt.Printf("Please enter the Portainer host's URL: ")
 	inputScanner.Scan()
 	env.PortainerHost = inputScanner.Text()
 
-	fmt.Printf("Please enter the Portainer username: ")
+	fmt.Printf("Please enter the Portainer username (ENTER to skip): ")
 	inputScanner.Scan()
 	env.Username = inputScanner.Text()
 
-	env.Password = helpers.Encrypt(helpers.GetPassword("Please enter the Portainer user's password: "))
+	if env.Username != "" {
+		env.Password = helpers.Encrypt(helpers.GetPassword("Please enter the Portainer user's password: "))
+	}
 	return env
+}
+
+func ConfigCreate() error {
+	configstruct := queryConfigValues()
+	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
+		PortainerHostConfigFile += ".json"
+	}
+	return configstruct.Json2ConfigFile(PortainerHostConfigFile)
 }

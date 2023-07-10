@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-var PortainerHostConfigFile = "c.json"
+var PortainerHostConfigFile = "push2registry.json"
 
 type PortainerHostConfigStruct struct {
 	Token         string `json:"Token,omitempty"`
