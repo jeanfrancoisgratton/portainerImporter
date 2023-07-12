@@ -15,9 +15,9 @@ var version = "0.100-0 (2023.07.05)"
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:     "p2r",
-	Short:   "Push a binary package to specified NxRM repo",
+	Short:   "Push a binary package to a specified portainer host",
 	Version: version,
-	Long:    `This tools allows you to push your docker image (tarball format) to your own NxRM docker registry.`,
+	Long:    `This tools allows you to push your docker image (tarball format) to your portainer host.`,
 }
 
 var clCmd = &cobra.Command{
@@ -38,6 +38,9 @@ func Execute() {
 
 func init() {
 	rootCmd.AddCommand(clCmd)
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "config", "c", "", "Environment file")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerHost, "portainerhost", "p", "", "Portainer url")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerUsername, "user", "u", "", "Portainer user")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerEnv, "environment", "e", "", "Portainer environment")
 
-	rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "environment", "e", "push2registry.json", "Environment file.")
 }
