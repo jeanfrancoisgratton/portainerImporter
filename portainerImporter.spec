@@ -23,7 +23,7 @@ BuildRequires: gcc
 #Obsoletes: vmman1 > 1.140
 
 %description
-Push binary package to NxRM
+Tool to import a docker image in tarball form in a Portainer host back-end
 
 %prep
 %autosetup
