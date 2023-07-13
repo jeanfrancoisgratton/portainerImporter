@@ -2,7 +2,7 @@
 // Écrit par J.F.Gratton (jean-francois@famillegratton.net)
 // configLsRm.go, jfgratton : 2023-07-12
 
-package config
+package configs
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 )
 
 func ListConfigs() error {
-	cfgdir := filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter")
+	cfgdir := filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter")
 	// Open the directory
 	dirEntries, err := os.ReadDir(cfgdir)
 	if err != nil {
@@ -38,5 +38,5 @@ func RemoveConfig() error {
 	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
 		PortainerHostConfigFile += ".json"
 	}
-	return os.Remove(filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter", PortainerHostConfigFile))
+	return os.Remove(filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter", PortainerHostConfigFile))
 }

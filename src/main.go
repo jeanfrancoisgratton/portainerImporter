@@ -11,8 +11,8 @@ import (
 
 func main() {
 
-	// We ensure that the user has a config directory
-	if err := os.MkdirAll(filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter"), os.ModePerm); err != nil {
+	// We ensure that the user has a configs directory
+	if err := os.MkdirAll(filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter"), os.ModePerm); err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
 	}

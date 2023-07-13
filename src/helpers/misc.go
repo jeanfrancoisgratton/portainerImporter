@@ -17,7 +17,7 @@ func Changelog() {
 VERSION		DATE			COMMENT
 -------		----			-------
 0.200		2023.07.12		token mgmt
-0.100		2023.07.05		stub, config mgmt
+0.100		2023.07.05		stub, configs mgmt
 `)
 }
 

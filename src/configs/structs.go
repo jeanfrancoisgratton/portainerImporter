@@ -3,7 +3,7 @@
 // Orininal name: src/helpers/structs.go
 // Original time: 2023/07/05 14:23
 
-package config
+package configs
 
 import (
 	"encoding/json"
@@ -29,7 +29,7 @@ func (p PortainerHostConfigStruct) ConfigFile2Json() (PortainerHostConfigStruct,
 	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
 		PortainerHostConfigFile += ".json"
 	}
-	rcFile := filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter", PortainerHostConfigFile)
+	rcFile := filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter", PortainerHostConfigFile)
 	jFile, err := os.ReadFile(rcFile)
 	if err != nil {
 		return PortainerHostConfigStruct{}, err
@@ -50,7 +50,7 @@ func (p PortainerHostConfigStruct) Json2ConfigFile(outputfile string) error {
 	if err != nil {
 		return err
 	}
-	rcFile := filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter", outputfile)
+	rcFile := filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter", outputfile)
 	err = os.WriteFile(rcFile, jStream, 0600)
 
 	return err
