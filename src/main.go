@@ -16,12 +16,6 @@ func main() {
 		fmt.Println(err)
 		os.Exit(-1)
 	}
-	//// Second, we create a configuration file if none exists
-	//_, err := os.Stat(filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter", "portainerImporter.json"))
-	//if err != nil {
-	//	//config.TemplateConfigCreate("")
-	//	config.TemplatedConfigCreate()
-	//}
 
 	cmd.Execute()
 }

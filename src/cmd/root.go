@@ -4,6 +4,7 @@
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"os"
 	"portainerImporter/config"
@@ -32,6 +33,7 @@ var clCmd = &cobra.Command{
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 }

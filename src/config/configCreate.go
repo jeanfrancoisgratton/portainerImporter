@@ -1,6 +1,6 @@
 // portainerImporter
 // Écrit par J.F. Gratton <jean-francois@famillegratton.net>
-// Orininal name: src/config/cfgCreation.go
+// Orininal name: src/config/configCreate.go
 // Original time: 2023/07/05 15:03
 
 package config
@@ -13,10 +13,17 @@ import (
 	"strings"
 )
 
-// Simple function, we create a templated config file
-func TemplatedConfigCreate() error {
-	var portainerhostconfig = PortainerHostConfigStruct{Token: "", Environment: "local", PortainerHost: "https://localhost:19943"}
-	return portainerhostconfig.Json2ConfigFile(PortainerHostConfigFile)
+func CreateConfig() error {
+	if PortainerHostConfigFile == "" {
+		fmt.Println("You must pass a -c flag to this command.")
+		return nil
+	}
+
+	configstruct := queryConfigValues()
+	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
+		PortainerHostConfigFile += ".json"
+	}
+	return configstruct.Json2ConfigFile(PortainerHostConfigFile)
 }
 
 func queryConfigValues() PortainerHostConfigStruct {
@@ -46,12 +53,4 @@ func queryConfigValues() PortainerHostConfigStruct {
 		env.Password = helpers.Encrypt(helpers.GetPassword("Please enter the Portainer user's password: "))
 	}
 	return env
-}
-
-func ConfigCreate() error {
-	configstruct := queryConfigValues()
-	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
-		PortainerHostConfigFile += ".json"
-	}
-	return configstruct.Json2ConfigFile(PortainerHostConfigFile)
 }
