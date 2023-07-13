@@ -1,4 +1,4 @@
-// push2registry : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
+// portainerImporter : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
 // src/cmd/root.go
 
 package cmd
@@ -6,15 +6,15 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"os"
-	"push2registry/config"
-	"push2registry/helpers"
+	"portainerImporter/config"
+	"portainerImporter/helpers"
 )
 
 var version = "0.100-0 (2023.07.05)"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "p2r",
+	Use:     "portainerImporter",
 	Short:   "Push a binary package to a specified portainer host",
 	Version: version,
 	Long:    `This tools allows you to push your docker image (tarball format) to your portainer host.`,

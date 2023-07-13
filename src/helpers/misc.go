@@ -1,4 +1,4 @@
-// push2registry : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
+// portainerImporter : Écrit par Jean-François Gratton (jean-francois@famillegratton.net)
 // src/misc/misc.go
 // 4/16/23 21:35:03
 

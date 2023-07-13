@@ -5,5 +5,5 @@ OUTPUT=/opt/bin
 if [ "$#" -gt 0 ]; then
     OUTPUT=$1
 fi
-go build -o ${OUTPUT}/p2r .
+go build -o ${OUTPUT}/portainerImporter .
 

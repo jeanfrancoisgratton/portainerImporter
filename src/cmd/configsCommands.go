@@ -1,4 +1,4 @@
-// push2registry
+// portainerImporter
 // Écrit par J.F. Gratton <jean-francois@famillegratton.net>
 // Orininal name: src/cmd/configsCommands.go
 // Original time: 2023/07/05 15:23
@@ -8,7 +8,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"push2registry/config"
+	"portainerImporter/config"
 )
 
 var configCmd = &cobra.Command{

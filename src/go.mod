@@ -1,4 +1,4 @@
-module push2registry
+module portainerImporter
 
 go 1.20
 

@@ -1,20 +1,20 @@
 %define debug_package   %{nil}
 %define _build_id_links none
-%define _name   push2registry
+%define _name   portainerImporter
 %define _prefix /opt
 %define _version 0.100
 %define _rel 0
 %define _arch x86_64
-%define _binaryname p2r
+%define _binaryname portainerImporter
 
-Name:       push2registry
+Name:       portainerImporter
 Version:    %{_version}
 Release:    %{_rel}
-Summary:    push2registry
+Summary:    portainerImporter
 
 Group:      SSL
 License:    GPL2.0
-URL:        https://github.com/jeanfrancoisgratton/push2registry
+URL:        https://github.com/jeanfrancoisgratton/portainerImporter
 
 Source0:    %{name}-%{_version}.tar.gz
 BuildArchitectures: x86_64

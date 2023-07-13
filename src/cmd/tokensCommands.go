@@ -1,4 +1,4 @@
-// push2registry
+// portainerImporter
 // Écrit par J.F. Gratton <jean-francois@famillegratton.net>
 // Orininal name: src/cmd/tokensCommands.go
 // Original time: 2023/07/06 18:30
@@ -8,7 +8,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"push2registry/executor"
+	"portainerImporter/executor"
 )
 
 var tokenCmd = &cobra.Command{
@@ -49,5 +49,5 @@ func init() {
 	tokenCmd.AddCommand(tknGetCmd)
 	tokenCmd.AddCommand(tknShowCmd)
 
-	//rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "environment", "e", "push2registry.json", "Environment file.")
+	//rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "environment", "e", "portainerImporter.json", "Environment file.")
 }
