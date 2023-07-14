@@ -19,19 +19,18 @@ var tokenCmd = &cobra.Command{
 	},
 }
 
-var tknAddCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add a token to specified configs file",
-	Run: func(cmd *cobra.Command, args []string) {
-		executor.TokenAdd()
-	},
-}
-
+//	var tknAddCmd = &cobra.Command{
+//		Use:   "add",
+//		Short: "Add a token to specified configs file",
+//		Run: func(cmd *cobra.Command, args []string) {
+//			executor.TokenAdd()
+//		},
+//	}
 var tknGetCmd = &cobra.Command{
 	Use:   "get",
 	Short: "get the auth token",
 	Run: func(cmd *cobra.Command, args []string) {
-		executor.TokenGet()
+		executor.GetToken()
 	},
 }
 
@@ -45,7 +44,7 @@ var tknShowCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(tokenCmd)
-	tokenCmd.AddCommand(tknAddCmd)
+	//	tokenCmd.AddCommand(tknAddCmd)
 	tokenCmd.AddCommand(tknGetCmd)
 	tokenCmd.AddCommand(tknShowCmd)
 

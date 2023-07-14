@@ -9,7 +9,7 @@ func TokenAdd() error {
 	return nil
 }
 
-func TokenGet() error {
+func GetToken() error {
 	return nil
 }
 

@@ -22,7 +22,8 @@ type PortainerHostConfigStruct struct {
 	Password      string `json:"Password,omitempty"`
 }
 
-func (p PortainerHostConfigStruct) ConfigFile2Json() (PortainerHostConfigStruct, error) {
+// func (p PortainerHostConfigStruct) ConfigFile2Json() (PortainerHostConfigStruct, error) {
+func ConfigFile2Json() (PortainerHostConfigStruct, error) {
 	var payload PortainerHostConfigStruct
 	var err error
 
