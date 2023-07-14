@@ -12,7 +12,7 @@ import (
 )
 
 func ListConfigs() error {
-	cfgdir := filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter")
+	cfgdir := filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter")
 	// Open the directory
 	dirEntries, err := os.ReadDir(cfgdir)
 	if err != nil {
@@ -38,5 +38,5 @@ func RemoveConfig() error {
 	if !strings.HasSuffix(PortainerHostConfigFile, ".json") {
 		PortainerHostConfigFile += ".json"
 	}
-	return os.Remove(filepath.Join(os.Getenv("HOME"), ".configs", "portainerImporter", PortainerHostConfigFile))
+	return os.Remove(filepath.Join(os.Getenv("HOME"), ".config", "portainerImporter", PortainerHostConfigFile))
 }
