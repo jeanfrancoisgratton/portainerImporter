@@ -8,7 +8,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"portainerImporter/executor"
+	"portainerImporter/tokens"
 )
 
 var tokenCmd = &cobra.Command{
@@ -30,7 +30,7 @@ var tknGetCmd = &cobra.Command{
 	Use:   "get",
 	Short: "get the auth token",
 	Run: func(cmd *cobra.Command, args []string) {
-		executor.GetToken()
+		tokens.GetToken()
 	},
 }
 
@@ -38,7 +38,14 @@ var tknShowCmd = &cobra.Command{
 	Use:   "show",
 	Short: "prints the auth token",
 	Run: func(cmd *cobra.Command, args []string) {
-		executor.TokenShow()
+		var t = ""
+		var e error
+		t, e = tokens.TokenShow()
+		if e != nil {
+			fmt.Println(e)
+		} else {
+			fmt.Println(t)
+		}
 	},
 }
 

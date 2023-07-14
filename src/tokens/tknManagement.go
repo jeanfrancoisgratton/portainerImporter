@@ -35,6 +35,15 @@ func GetToken() (string, error) {
 	return "", nil
 }
 
+func TokenShow() (string, error) {
+	var tkn = ""
+	var err error
+	if tkn, err = GetToken(); err != nil {
+		return "", err
+	}
+	return tkn, err
+}
+
 func getSetToken(uname string, passwd string, host string) (string, error) {
 	requestBody := fmt.Sprintf(`{"Username": "%s", "Password": "%s"}`, uname, passwd)
 	resp, err := http.Post(host+"/api/auth", "application/json", bytes.NewBufferString(requestBody))
