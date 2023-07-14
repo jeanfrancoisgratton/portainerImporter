@@ -7,6 +7,7 @@ package tokens
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"net/http"
 	"os"
@@ -19,6 +20,11 @@ import (
 func GetToken() (string, error) {
 	var cfg configs.PortainerHostConfigStruct
 	var err error
+
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
+		InsecureSkipVerify: true,
+	}
+
 	if cfg, err = populateConfigStruct(); err != nil {
 		return "", err
 	}
