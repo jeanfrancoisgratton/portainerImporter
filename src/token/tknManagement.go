@@ -1,9 +1,9 @@
 // portainerImporter
 // Écrit par J.F. Gratton <jean-francois@famillegratton.net>
-// Orininal name: src/tokens/tknManagement.go
+// Orininal name: src/token/tknManagement.go
 // Original time: 2023/07/13 07:39
 
-package tokens
+package token
 
 import (
 	"bytes"
@@ -12,9 +12,10 @@ import (
 	"net/http"
 	"os"
 	"portainerImporter/configs"
+	"portainerImporter/helpers"
 )
 
-// GetToken(): fetches Portainer's auth token to-from an http post-get
+// GetToken (): fetches Portainer's auth token to-from an http post-get
 // 1. We populate the HostConfig structure
 // 2. We set the token
 func GetToken() (string, error) {
@@ -38,7 +39,8 @@ func GetToken() (string, error) {
 		return "", err
 	}
 
-	return "", nil
+	cfg.Json2ConfigFile(configs.PortainerHostConfigFile)
+	return cfg.Token, nil
 }
 
 func TokenShow() (string, error) {
@@ -51,7 +53,8 @@ func TokenShow() (string, error) {
 }
 
 func getSetToken(uname string, passwd string, host string) (string, error) {
-	requestBody := fmt.Sprintf(`{"Username": "%s", "Password": "%s"}`, uname, passwd)
+
+	requestBody := fmt.Sprintf(`{"Username": "%s", "Password": "%s"}`, uname, helpers.Decrypt(passwd))
 	resp, err := http.Post(host+"/api/auth", "application/json", bytes.NewBufferString(requestBody))
 	if err != nil {
 		return "", err
