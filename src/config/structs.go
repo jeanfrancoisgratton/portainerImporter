@@ -3,7 +3,7 @@
 // Orininal name: src/helpers/structs.go
 // Original time: 2023/07/05 14:23
 
-package configs
+package config
 
 import (
 	"encoding/json"

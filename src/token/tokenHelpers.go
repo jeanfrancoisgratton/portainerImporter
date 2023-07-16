@@ -1,9 +1,9 @@
-package tokens
+package token
 
 import (
 	"encoding/json"
 	"io"
-	"portainerImporter/configs"
+	"portainerImporter/config"
 	"portainerImporter/helpers"
 )
 
@@ -11,17 +11,17 @@ func decodeJSON(r io.Reader, v interface{}) error {
 	return json.NewDecoder(r).Decode(v)
 }
 
-func populateConfigStruct() (configs.PortainerHostConfigStruct, error) {
-	var cfg configs.PortainerHostConfigStruct
-	if configs.PortainerHostConfigFile != "" {
+func populateConfigStruct() (config.PortainerHostConfigStruct, error) {
+	var cfg config.PortainerHostConfigStruct
+	if config.PortainerHostConfigFile != "" {
 		var err error
-		cfg, err = configs.ConfigFile2Json()
+		cfg, err = config.ConfigFile2Json()
 		if err != nil {
-			return configs.PortainerHostConfigStruct{}, err
+			return config.PortainerHostConfigStruct{}, err
 		}
 	} else {
-		cfg = configs.PortainerHostConfigStruct{Environment: configs.PortainerEnv,
-			PortainerHost: configs.PortainerHost, Username: configs.PortainerUsername}
+		cfg = config.PortainerHostConfigStruct{Environment: config.PortainerEnv,
+			PortainerHost: config.PortainerHost, Username: config.PortainerUsername}
 	}
 	if cfg.Password == "" && cfg.Username != "" {
 		cfg.Password = helpers.Decrypt(helpers.GetPassword("Please enter Portainer user's password: "))

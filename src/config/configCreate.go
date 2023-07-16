@@ -1,9 +1,9 @@
 // portainerImporter
 // Écrit par J.F. Gratton <jean-francois@famillegratton.net>
-// Orininal name: src/configs/configCreate.go
+// Orininal name: src/config/configCreate.go
 // Original time: 2023/07/05 15:03
 
-package configs
+package config
 
 import (
 	"bufio"

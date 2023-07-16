@@ -2,7 +2,7 @@
 // Écrit par J.F.Gratton (jean-francois@famillegratton.net)
 // configLsRm.go, jfgratton : 2023-07-12
 
-package configs
+package config
 
 import (
 	"fmt"

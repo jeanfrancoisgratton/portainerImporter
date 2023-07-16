@@ -8,11 +8,11 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"portainerImporter/configs"
+	"portainerImporter/config"
 )
 
 var configCmd = &cobra.Command{
-	Use:   "configs",
+	Use:   "config",
 	Short: "Config management",
 	Long:  `This is where you configure your endpoints.`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,9 +23,9 @@ var configCmd = &cobra.Command{
 var configCreateCmd = &cobra.Command{
 	Use:     "create",
 	Aliases: []string{"add"},
-	Short:   "Creates a configs file",
+	Short:   "Creates a config file",
 	Run: func(cmd *cobra.Command, args []string) {
-		if e := configs.CreateConfig(); e != nil {
+		if e := config.CreateConfig(); e != nil {
 			fmt.Println(e.Error())
 		}
 	},
@@ -34,10 +34,10 @@ var configCreateCmd = &cobra.Command{
 var configRmCmd = &cobra.Command{
 	Use:     "delete",
 	Aliases: []string{"remove", "del", "rm"},
-	Short:   "Removes a configs file as per the -c flag",
+	Short:   "Removes a config file as per the -c flag",
 	Long:    "This means that the -c flag must be passed to this command.",
 	Run: func(cmd *cobra.Command, args []string) {
-		if e := configs.RemoveConfig(); e != nil {
+		if e := config.RemoveConfig(); e != nil {
 			fmt.Println(e.Error())
 		}
 	},
@@ -45,9 +45,9 @@ var configRmCmd = &cobra.Command{
 var configListCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls"},
-	Short:   "Lists all configs files in your $HOME/.configs/ directory",
+	Short:   "Lists all config files in your $HOME/.config/ directory",
 	Run: func(cmd *cobra.Command, args []string) {
-		if e := configs.ListConfigs(); e != nil {
+		if e := config.ListConfigs(); e != nil {
 			fmt.Println(e.Error())
 		}
 	},

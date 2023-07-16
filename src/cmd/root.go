@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
-	"portainerImporter/configs"
+	"portainerImporter/config"
 	"portainerImporter/helpers"
 )
 
@@ -40,9 +40,9 @@ func Execute() {
 
 func init() {
 	rootCmd.AddCommand(clCmd)
-	rootCmd.PersistentFlags().StringVarP(&configs.PortainerHostConfigFile, "configs", "c", "", "Environment file")
-	rootCmd.PersistentFlags().StringVarP(&configs.PortainerHost, "portainerhost", "p", "", "Portainer url")
-	rootCmd.PersistentFlags().StringVarP(&configs.PortainerUsername, "user", "u", "", "Portainer user")
-	rootCmd.PersistentFlags().StringVarP(&configs.PortainerEnv, "environment", "e", "", "Portainer environment")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "config", "c", "", "Environment file")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerHost, "portainerhost", "p", "", "Portainer url")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerUsername, "user", "u", "", "Portainer user")
+	rootCmd.PersistentFlags().StringVarP(&config.PortainerEnv, "environment", "e", "", "Portainer environment")
 
 }

@@ -22,7 +22,7 @@ var tokenCmd = &cobra.Command{
 
 //	var tknAddCmd = &cobra.Command{
 //		Use:   "add",
-//		Short: "Add a token to specified configs file",
+//		Short: "Add a token to specified config file",
 //		Run: func(cmd *cobra.Command, args []string) {
 //			executor.TokenAdd()
 //		},
@@ -56,5 +56,5 @@ func init() {
 	tokenCmd.AddCommand(tknGetCmd)
 	tokenCmd.AddCommand(tknShowCmd)
 
-	//rootCmd.PersistentFlags().StringVarP(&configs.PortainerHostConfigFile, "environment", "e", "portainerImporter.json", "Environment file.")
+	//rootCmd.PersistentFlags().StringVarP(&config.PortainerHostConfigFile, "environment", "e", "portainerImporter.json", "Environment file.")
 }

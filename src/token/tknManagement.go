@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"portainerImporter/configs"
+	"portainerImporter/config"
 	"portainerImporter/helpers"
 )
 
@@ -19,7 +19,7 @@ import (
 // 1. We populate the HostConfig structure
 // 2. We set the token
 func GetToken() (string, error) {
-	var cfg configs.PortainerHostConfigStruct
+	var cfg config.PortainerHostConfigStruct
 	var err error
 
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
@@ -39,7 +39,7 @@ func GetToken() (string, error) {
 		return "", err
 	}
 
-	cfg.Json2ConfigFile(configs.PortainerHostConfigFile)
+	cfg.Json2ConfigFile(config.PortainerHostConfigFile)
 	return cfg.Token, nil
 }
 
