@@ -1,5 +1,5 @@
 Package: portainerImporter
-Version: 0.200-0
+Version: 0.300-0
 Architecture: amd64
 Maintainer: J.F.Gratton <nexus@famillegratton.net>
 Description: Import docker image tarball in Portainer

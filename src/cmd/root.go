@@ -11,7 +11,7 @@ import (
 	"portainerImporter/helpers"
 )
 
-var version = "0.200-0 (2023.07.12)"
+var version = "0.300-0 (2023.07.15)"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
