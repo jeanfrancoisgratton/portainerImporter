@@ -7,9 +7,6 @@ package helpers
 import (
 	"fmt"
 	"github.com/jwalton/gchalk"
-	"reflect"
-	"runtime"
-	"strings"
 )
 
 func Changelog() {
@@ -45,12 +42,12 @@ func Normal(sentence string) string {
 	return fmt.Sprintf("%s", gchalk.WithWhite().Bold(sentence))
 }
 
-func ReflectionGetPackageName() string {
-	pc, _, _, _ := runtime.Caller(1)
-	callingFunc := runtime.FuncForPC(pc)
-
-	callerPkgPath := reflect.ValueOf(callingFunc).Elem().FieldByName("pkgPath").String()
-	packageName := callerPkgPath[strings.LastIndex(callerPkgPath, "/")+1:]
-
-	return packageName
-}
+//func ReflectionGetPackageName() string {
+//	pc, _, _, _ := runtime.Caller(1)
+//	callingFunc := runtime.FuncForPC(pc)
+//
+//	callerPkgPath := reflect.ValueOf(callingFunc).Elem().FieldByName("pkgPath").String()
+//	packageName := callerPkgPath[strings.LastIndex(callerPkgPath, "/")+1:]
+//
+//	return packageName
+//}

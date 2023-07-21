@@ -4,3 +4,7 @@
 // Original time: 2023/07/06 19:25
 
 package environments
+
+func ListEnv() (string, error) {
+	return "", nil
+}

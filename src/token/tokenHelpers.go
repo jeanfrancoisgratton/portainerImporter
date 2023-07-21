@@ -7,11 +7,7 @@ import (
 	"portainerImporter/helpers"
 )
 
-func decodeJSON(r io.Reader, v interface{}) error {
-	return json.NewDecoder(r).Decode(v)
-}
-
-func populateConfigStruct() (config.PortainerHostConfigStruct, error) {
+func PopulateConfigStruct() (config.PortainerHostConfigStruct, error) {
 	var cfg config.PortainerHostConfigStruct
 	if config.PortainerHostConfigFile != "" {
 		var err error
@@ -27,4 +23,8 @@ func populateConfigStruct() (config.PortainerHostConfigStruct, error) {
 		cfg.Password = helpers.Decrypt(helpers.GetPassword("Please enter Portainer user's password: "))
 	}
 	return cfg, nil
+}
+
+func decodeJSON(r io.Reader, v interface{}) error {
+	return json.NewDecoder(r).Decode(v)
 }

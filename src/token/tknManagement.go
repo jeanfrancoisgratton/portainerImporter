@@ -26,7 +26,7 @@ func GetToken() (string, error) {
 		InsecureSkipVerify: true,
 	}
 
-	if cfg, err = populateConfigStruct(); err != nil {
+	if cfg, err = PopulateConfigStruct(); err != nil {
 		return "", err
 	}
 
