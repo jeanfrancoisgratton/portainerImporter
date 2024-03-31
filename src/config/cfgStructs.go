@@ -1,13 +1,15 @@
 // portainerImporter
 // Written by J.F. Gratton <jean-francois@famillegratton.net>
-// Original filename: src/env/envStructs.go
+// Original filename: src/config/cfgStructs.go
 // Original timestamp: 2024/03/28 20:42
 
-package env
+package config
 
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
+	"portainerImporter/helpers"
 	"strings"
 )
 
@@ -20,24 +22,29 @@ type PortainerCredsStruct struct {
 	Comments             string `json:"comments,omitempty"`
 }
 
-func (e PortainerCredsStruct) SaveEnv(fullpath string) error {
+// Save the type struct into a JSON
+func (e PortainerCredsStruct) SaveCfg(filename string) error {
 	jStream, err := json.MarshalIndent(e, "", "  ")
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile(fullpath, jStream, 0600)
+	if !strings.HasSuffix(filename, ".json") {
+		filename += ".json"
+	}
+	err = os.WriteFile(filepath.Join(os.Getenv("HOME"), ".config", "JFG", "portainerImporter", filename), jStream, 0600)
 
 	return err
 }
 
-func LoadEnv(fname string) (PortainerCredsStruct, error) {
+// Map a JSON file to a PortainerCredsStruct
+func LoadCfg(fname string) (PortainerCredsStruct, error) {
 	var payload PortainerCredsStruct
 	var err error
 
 	if !strings.HasSuffix(fname, ".json") {
 		fname += ".json"
 	}
-	jFile, err := os.ReadFile(fname)
+	jFile, err := os.ReadFile(filepath.Join(os.Getenv("HOME"), ".config", "JFG", "portainerImporter", fname))
 	if err != nil {
 		return PortainerCredsStruct{}, err
 	}
@@ -45,6 +52,8 @@ func LoadEnv(fname string) (PortainerCredsStruct, error) {
 	if err != nil {
 		return PortainerCredsStruct{}, err
 	} else {
+		// we need to decode the password before using it elsewhere
+		payload.Password = helpers.DecodeString(payload.Password)
 		return payload, nil
 	}
 }

@@ -1,7 +1,7 @@
-// jsonInjector
+// portainerImporter
 // Written by J.F. Gratton <jean-francois@famillegratton.net>
 // Original filename: src/helpers/misc.go
-// Original timestamp: 2024/03/20 14:35
+// Original timestamp: 2024/03/28 21:34
 
 package helpers
 
@@ -11,15 +11,6 @@ import (
 	"strconv"
 )
 
-// CustomError implements the error interface
-type CustomError struct {
-	Message string
-}
-
-func (e CustomError) Error() string {
-	return e.Message
-}
-
 func ChangeLog() {
 	//fmt.Printf("\x1b[2J")
 	fmt.Printf("\x1bc")
@@ -28,12 +19,7 @@ func ChangeLog() {
 	fmt.Print(`
 VERSION		DATE			COMMENTAIRE
 -------		----			-----------
-2.03.00		2024.03.27		Tout les secrets sont encodés (Base64) par défaut
-2.00.00		2024.03.xx		Les endpoints sont mieux définis. COBRA est de retour dans la solution (logiciel)
-1.11.00		2024.03.20		Les paramètres passés à l'outil sont mieux validés
-1.00.04		2024.03.19		L'outil est maintenant "container-aware"
-1.00.03		2024.03.19		Force l'architecture AMD64 pour l'outil et le container Docker 
-1.00.00		2024.03.15		Version initiale
+1.00.00		2024.03.29		Initial version
 `)
 }
 

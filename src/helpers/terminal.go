@@ -1,13 +1,15 @@
-// jsonInjector
+// portainerImporter
 // Written by J.F. Gratton <jean-francois@famillegratton.net>
-// Original filename: src/helpers/terminal.go
-// Original timestamp: 2024/03/20 14:35
+// Original filename: src/helpers/misc.go
+// Original timestamp: 2024/03/28 21:34
 
 package helpers
 
 import (
+	"bufio"
 	"fmt"
 	"github.com/jwalton/gchalk"
+	"os"
 	"syscall"
 	"unsafe"
 )
@@ -47,4 +49,18 @@ func White(sentence string) string {
 
 func Yellow(sentence string) string {
 	return fmt.Sprintf("%s", gchalk.WithBrightYellow().Bold(sentence))
+}
+
+// Getting typed values from prompt
+func GetStringValFromPrompt(prompt string) string {
+	inputScanner := bufio.NewScanner(os.Stdin)
+	fmt.Printf("%s", prompt)
+	inputScanner.Scan()
+	nval := inputScanner.Text()
+	value := ""
+
+	if nval != "" {
+		value = nval
+	}
+	return value
 }
