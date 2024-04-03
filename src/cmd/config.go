@@ -7,6 +7,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/jeanfrancoisgratton/customError"
 	"github.com/spf13/cobra"
 	"os"
 	"portainerImporter/config"
@@ -21,22 +22,23 @@ var cfgCmd = &cobra.Command{
 	},
 }
 
-//	var envListCmd = &cobra.Command{
-//		Use:     "list",
-//		Aliases: []string{"ls"},
-//		Example: "cm env list [directory]",
-//		Short:   "Lists all environment files",
-//		Run: func(cmd *cobra.Command, args []string) {
-//			argument := ""
-//			if len(args) > 0 {
-//				argument = args[0]
-//			}
-//			if err := environment.ListEnvironments(argument); err != nil {
-//				fmt.Println(err)
-//				os.Exit(2)
-//			}
-//		},
-//	}
+var cfgListCmd = &cobra.Command{
+	Use:     "list",
+	Aliases: []string{"ls"},
+	Example: "portainerImportainer cfg list [directory]",
+	Short:   "Lists all config files",
+	Run: func(cmd *cobra.Command, args []string) {
+		argument := ""
+		if len(args) > 0 {
+			argument = args[0]
+		}
+		if err := config.ListConfigs(argument); err != nil {
+			ce := customError.CustomError{Fatality: customError.Fatal, Title: "FATAL", Message: err.Error()}
+			fmt.Println(ce.Error())
+			os.Exit(2)
+		}
+	},
+}
 
 var cfgRmCmd = &cobra.Command{
 	Use:     "rm",
@@ -71,31 +73,31 @@ Will create a defaultCfg.json file, which is the application's default file.`,
 			fname = args[0]
 		}
 		if err := config.CreateEnvFile(fname); err != nil {
+			ce := customError.CustomError{Fatality: customError.Fatal, Title: "FATAL", Message: err.Error()}
+			fmt.Println(ce.Error())
+			os.Exit(2)
+		}
+	},
+}
+
+var cfgInfoCmd = &cobra.Command{
+	Use:     "info",
+	Aliases: []string{"explain"},
+	Example: "portainerImporter cfg info FILE1[.json] FILE2[.json]... FILEn[.json]",
+	Short:   "Prints the config FILE[12n] information",
+	Long:    `You can list as many config files as you wish, here`,
+	Run: func(cmd *cobra.Command, args []string) {
+		cfgfiles := []string{"defaultCfg.json"}
+		if len(args) != 0 {
+			cfgfiles = args
+		}
+		if err := config.ExplainCfgFile(cfgfiles); err != nil {
 			fmt.Println(err)
 			os.Exit(2)
 		}
 	},
 }
 
-//var envInfoCmd = &cobra.Command{
-//	Use:     "info",
-//	Aliases: []string{"explain"},
-//	Example: "cm env info FILE1[.json] FILE2[.json]... FILEn[.json]",
-//	Short:   "Prints the environment FILE[12n] information",
-//	Long:    `You can list as many environment files as you wish, here`,
-//	Run: func(cmd *cobra.Command, args []string) {
-//		envfiles := []string{"defaultEnv.json"}
-//		if len(args) != 0 {
-//			envfiles = args
-//		}
-//		if err := environment.ExplainEnvFile(envfiles); err != nil {
-//			fmt.Println(err)
-//			os.Exit(2)
-//		}
-//	},
-//}
-
 func init() {
-	cfgCmd.AddCommand(cfgAddCmd)
-
+	cfgCmd.AddCommand(cfgAddCmd, cfgRmCmd, cfgListCmd, cfgInfoCmd)
 }

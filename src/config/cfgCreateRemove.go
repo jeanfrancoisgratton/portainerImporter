@@ -6,19 +6,17 @@
 package config
 
 import (
+	"fmt"
+	"github.com/jeanfrancoisgratton/customError"
+	"os"
+	"path/filepath"
 	"portainerImporter/helpers"
+	"strings"
 )
 
+// Creates a config file. If no filename is provided, it will be defaultCfg.json
+// All files are hosted in $HOME/.config/JFG/portainerImporter/
 func CreateEnvFile(cfgFilename string) error {
-	//var cfgFile PortainerCredsStruct
-	cfgFile := promptForEnvValues()
-
-	cfgFile.SaveCfg(cfgFilename)
-
-	return nil
-}
-
-func promptForEnvValues() PortainerCredsStruct {
 	var pcs PortainerCredsStruct
 
 	pcs.Name = helpers.GetStringValFromPrompt("Please name this connection: ")
@@ -28,9 +26,23 @@ func promptForEnvValues() PortainerCredsStruct {
 	pcs.PortainerEnvironment = helpers.GetStringValFromPrompt("What is the Portainer environment ? ")
 	pcs.Comments = helpers.GetStringValFromPrompt("Enter optional comments, ENTER to skip: ")
 
-	return pcs
+	return pcs.SaveCfg(cfgFilename)
 }
 
+// Removes a config file. If no filename is provided, it will be defaultCfg.json
+// All files are hosted in $HOME/.config/JFG/portainerImporter/
+// If multiple filenames are provided, they will all be erased.
 func RemoveCfgFile(args []string) error {
-	var ce CustomErrors
+	for _, filename := range args {
+		if !strings.HasSuffix(filename, ".json") {
+			filename += ".json"
+		}
+		if err := os.Remove(filepath.Join(os.Getenv("HOME"), ".config", "JFG", "portainerImporter", filename)); err != nil {
+			ce := customError.CustomError{Fatality: customError.Warning, Message: err.Error()}
+			fmt.Println(ce.Error())
+		} else {
+			fmt.Printf("%s %s\n", filename, helpers.Green("removed"))
+		}
+	}
+	return nil
 }
