@@ -13,6 +13,8 @@ import (
 	"strings"
 )
 
+var CurrentConfigFile = "defaultCfg.json"
+
 type PortainerCredsStruct struct {
 	Name                 string `json:"name"`
 	PortainerHostURL     string `json:"portainerhost"`
@@ -23,15 +25,15 @@ type PortainerCredsStruct struct {
 }
 
 // Save the type struct into a JSON
-func (e PortainerCredsStruct) SaveCfg(filename string) error {
+func (e PortainerCredsStruct) SaveCfg() error {
 	jStream, err := json.MarshalIndent(e, "", "  ")
 	if err != nil {
 		return err
 	}
-	if !strings.HasSuffix(filename, ".json") {
-		filename += ".json"
+	if !strings.HasSuffix(CurrentConfigFile, ".json") {
+		CurrentConfigFile += ".json"
 	}
-	err = os.WriteFile(filepath.Join(os.Getenv("HOME"), ".config", "JFG", "portainerImporter", filename), jStream, 0600)
+	err = os.WriteFile(filepath.Join(os.Getenv("HOME"), ".config", "JFG", "portainerImporter", CurrentConfigFile), jStream, 0600)
 
 	return err
 }

@@ -68,11 +68,13 @@ Will create a defaultCfg.json file, which is the application's default file.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fname := ""
 		if len(args) == 0 {
+			config.CurrentConfigFile = "defaultCfg.json"
 			fname = "defaultCfg.json"
 		} else {
 			fname = args[0]
+			config.CurrentConfigFile = config.CurrentConfigFile
 		}
-		if err := config.CreateEnvFile(fname); err != nil {
+		if err := config.CreateCfgFile(); err != nil {
 			ce := customError.CustomError{Fatality: customError.Fatal, Title: "FATAL", Message: err.Error()}
 			fmt.Println(ce.Error())
 			os.Exit(2)

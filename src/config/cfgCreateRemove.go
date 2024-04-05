@@ -16,7 +16,7 @@ import (
 
 // Creates a config file. If no filename is provided, it will be defaultCfg.json
 // All files are hosted in $HOME/.config/JFG/portainerImporter/
-func CreateEnvFile(cfgFilename string) error {
+func CreateCfgFile() error {
 	var pcs PortainerCredsStruct
 
 	pcs.Name = helpers.GetStringValFromPrompt("Please name this connection: ")
@@ -26,7 +26,7 @@ func CreateEnvFile(cfgFilename string) error {
 	pcs.PortainerEnvironment = helpers.GetStringValFromPrompt("What is the Portainer environment ? ")
 	pcs.Comments = helpers.GetStringValFromPrompt("Enter optional comments, ENTER to skip: ")
 
-	return pcs.SaveCfg(cfgFilename)
+	return pcs.SaveCfg()
 }
 
 // Removes a config file. If no filename is provided, it will be defaultCfg.json
