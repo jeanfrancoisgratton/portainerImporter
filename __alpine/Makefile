@@ -3,7 +3,7 @@ all:
 	CGO_ENABLED=0 go build . -o ./portainerImporter.exe
 
 prepare:
-	sudo /opt/bin/install_golang.sh 1.22.1 amd64
+	sudo /opt/bin/install_golang.sh 1.22.2 amd64
 	sudo apk update --no-cache
 
 install:
