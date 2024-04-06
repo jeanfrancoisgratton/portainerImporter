@@ -2,12 +2,11 @@
 
 GOROOT=/opt/go
 OUTPUT=/opt/bin
+BINARY=portainerImporter
 
 # Get git branch's name, replace / with _
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 BRANCH=$(echo "$BRANCH" | tr '/' '_')
-
-BINARY=portainerImporter
 
 if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "main" ] || [ "$BRANCH" = "develop" ]; then
     FULLNAME="$BINARY"

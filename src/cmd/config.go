@@ -66,12 +66,9 @@ var cfgAddCmd = &cobra.Command{
 	Long: `The extension (.json) is implied and will be added if missing. Moreover, not specifying a filename
 Will create a defaultCfg.json file, which is the application's default file.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fname := ""
 		if len(args) == 0 {
 			config.CurrentConfigFile = "defaultCfg.json"
-			fname = "defaultCfg.json"
 		} else {
-			fname = args[0]
 			config.CurrentConfigFile = config.CurrentConfigFile
 		}
 		if err := config.CreateCfgFile(); err != nil {

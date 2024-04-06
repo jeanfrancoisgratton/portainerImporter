@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	github.com/jeanfrancoisgratton/customError v1.6.5
-	github.com/jedib0t/go-pretty/v6 v6.5.6
+	github.com/jedib0t/go-pretty/v6 v6.5.7
 	github.com/jwalton/gchalk v1.3.0
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/crypto v0.22.0
